@@ -13,6 +13,10 @@ E-commerce Analytics is a sales dashboard project focused on KPI tracking and de
 - Top products by revenue
 - Orders table with status badges
 
+## Live Demo
+
+[Open E-commerce Analytics](https://mmoreno-ecommerce-analytics.vercel.app/)
+
 ## Tech Stack
 
 - React
