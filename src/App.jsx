@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import KpiCard from "./components/KpiCard";
 import FiltersBar from "./components/FiltersBar";
 import { channels, orders, ranges, statuses } from "./data/orders";
@@ -13,6 +14,13 @@ function currency(value) {
 }
 
 export default function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    document.body.classList.toggle("theme-dark", darkMode);
+    document.body.classList.toggle("theme-light", !darkMode);
+  }, [darkMode]);
+
   const {
     query,
     setQuery,
@@ -29,14 +37,23 @@ export default function App() {
   } = useAnalytics(orders);
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${darkMode ? "dark" : ""}`}>
       <header className="hero">
-        <p className="eyebrow">E-commerce Analytics</p>
-        <h1>Sales dashboard for conversion and revenue insights</h1>
-        <p>
-          React portfolio project showing KPI modeling, derived state, multi-filter workflows,
-          and data storytelling for product decisions.
-        </p>
+        <div>
+          <p className="eyebrow">E-commerce Analytics</p>
+          <h1>Sales dashboard for conversion and revenue insights</h1>
+          <p>
+            React portfolio project showing KPI modeling, derived state, multi-filter workflows,
+            and data storytelling for product decisions.
+          </p>
+        </div>
+
+        <button
+          className="theme-toggle"
+          type="button"
+          onClick={() => setDarkMode((prev) => !prev)}>
+          {darkMode ? "Light mode" : "Dark mode"}
+        </button>
       </header>
 
       <section className="kpi-grid">
